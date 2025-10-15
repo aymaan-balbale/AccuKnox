@@ -1,21 +1,22 @@
 #!/bin/bash
 
 # =================================================================
-# Security Assessment Script for itsecgames.com
+# Security Assessment Script for itsecgames.com (Optimized)
 # Author: Aymaan Balbale
 # Date: October 15, 2025
 #
-# This script automates the reconnaissance and vulnerability
-# scanning process performed during the assessment.
+# This script uses a faster wordlist for Gobuster to complete
+# the assessment in a more reasonable amount of time.
 # =================================================================
 
 # --- Configuration ---
 TARGET="itsecgames.com"
 OUTPUT_DIR="scans"
-WORDLIST="/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt"
+# --- MISTAKE CORRECTED: Using a smaller, faster wordlist ---
+WORDLIST="/usr/share/wordlists/dirb/common.txt"
 
 # --- Script Start ---
-echo "--- Starting Security Assessment for $TARGET ---"
+echo "--- Starting OPTIMIZED Security Assessment for $TARGET ---"
 
 # Create a directory to store scan results
 echo "[+] Creating output directory: $OUTPUT_DIR"
@@ -40,8 +41,8 @@ echo "[+] Starting sslscan for detailed TLS analysis..."
 sslscan $TARGET > "$OUTPUT_DIR/sslscan_results.txt"
 echo "[*] sslscan complete. Results saved to '$OUTPUT_DIR/sslscan_results.txt'."
 
-# --- 4. Gobuster - Directory and File Enumeration ---
-echo "[+] Starting Gobuster for directory discovery..."
+# --- 4. Gobuster - Directory and File Enumeration (Faster) ---
+echo "[+] Starting Gobuster for directory discovery with a faster wordlist..."
 if [ -f "$WORDLIST" ]; then
     gobuster dir -u https://$TARGET -w "$WORDLIST" -t 50 -k -o "$OUTPUT_DIR/gobuster_results.txt"
     echo "[*] Gobuster scan complete. Results saved to '$OUTPUT_DIR/gobuster_results.txt'."
