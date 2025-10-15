@@ -1,3 +1,3 @@
 # AccuKnox
 
-[**Download the full PDF Report**](AccuKnox_report.pdf)
+[**Download the full PDF Report**](Accuknox_Report.pdf)
